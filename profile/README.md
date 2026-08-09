@@ -28,21 +28,21 @@ The platform turns those mechanics into an intentional distributed-systems desig
 ## The system
 
 ```mermaid
-flowchart LR
-    Player["Game client"]
-    Game["game-service<br/>sessions · actions · scoring"]
-    Timeline["timeline-service<br/>resolution · paradoxes · future events"]
-    Read["read-service<br/>projections · player state"]
-    Kafka[("Kafka")]
+sequenceDiagram
+    participant Client as Game client
+    participant Game as game-service
+    participant Kafka as Kafka
+    participant Timeline as timeline-service
+    participant Read as read-service
 
-    Player -->|commands| Game
-    Player -->|queries| Read
-    Game -->|game.events| Kafka
-    Kafka -->|game.events| Timeline
-    Kafka -->|game.events| Read
-    Timeline -->|timeline.events| Kafka
-    Kafka -->|timeline.events| Game
-    Kafka -->|timeline.events| Read
+    Client->>Game: Commands
+    Game->>Kafka: game.events
+    Kafka-->>Timeline: game.events
+    Kafka-->>Read: game.events
+    Timeline->>Kafka: timeline.events
+    Kafka-->>Game: timeline.events
+    Kafka-->>Read: timeline.events
+    Client->>Read: Queries
 ```
 
 - **`game-service`** orchestrates lobbies, game sessions, action rounds, and scoring as a Spring Modulith application.
