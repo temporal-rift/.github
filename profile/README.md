@@ -63,6 +63,7 @@ Services are independently deployable, own their PostgreSQL data, and communicat
 | [`infrastructure`](https://github.com/temporal-rift/infrastructure) | Local platform stack and end-to-end verification |
 | [`temporal-rift-bom`](https://github.com/temporal-rift/temporal-rift-bom) | Shared Java build, quality, and dependency conventions |
 | [`docs`](https://github.com/temporal-rift/docs) | Game design, architecture, API, event, and saga documentation |
+| [`simulation-workbench`](https://github.com/temporal-rift/simulation-workbench) | Reproducible simulation experiments, bot policies, and balance analysis for designers |
 
 ## Technology
 
